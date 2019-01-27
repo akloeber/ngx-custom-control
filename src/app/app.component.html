@@ -1,0 +1,23 @@
+<form [formGroup]="form">
+  <app-custom-control [id]="'react-stat'" label="Reactive (static):" [required]="true" formControlName="age"></app-custom-control>
+  <app-custom-control [id]="'react-dyn'" label="Reactive (dynamic):" [required]="required" [even]="validateEven" formControlName="ageDynamic"></app-custom-control>
+</form>
+
+<app-custom-control [id]="'tpl-control'"  label="NgModel:" [disabled]="disabled" [required]="required" [even]="validateEven" [(ngModel)]="age"></app-custom-control>
+
+<label>standard &lt;input&gt;:</label>
+<input type="number" [id]="'input'" [disabled]="disabled" [required]="required" [even]="validateEven" [(ngModel)]="age">
+
+<hr>
+<br>
+ng model: {{age | json}}
+<br>
+Form model: {{form.value | json}}
+<br>
+Form status: {{form.status}}
+<br>
+<input type="checkbox" [(ngModel)]="required"><label>required</label>
+<br>
+<input type="checkbox" [(ngModel)]="disabled" (ngModelChange)="onDisabledChange($event)"><label>disabled</label>
+<br>
+<input type="checkbox" [(ngModel)]="validateEven"><label>validate even</label>
